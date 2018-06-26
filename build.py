@@ -14,7 +14,7 @@ def download_extract(url, dl_path):
         try:
             # Already downloaded
             wget.download(url, out=dl_path)
-        except urllib.error.URLError:
+        except:
             warnings.warn('wget download is not working properly, sleep for 5 seconds and try again...')
             time.sleep(5)
 
