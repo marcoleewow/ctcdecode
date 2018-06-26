@@ -10,9 +10,13 @@ from torch.utils.ffi import create_extension
 
 
 def download_extract(url, dl_path):
-    if not os.path.isfile(dl_path):
-        # Already downloaded
-        wget.download(url, out=dl_path)
+    while not os.path.isfile(dl_path):
+        try:
+            # Already downloaded
+            wget.download(url, out=dl_path)
+        except urllib.error.URLError:
+            time.sleep(5)
+            
     if dl_path.endswith(".tar.gz") and os.path.isdir(dl_path[:-len(".tar.gz")]):
         # Already extracted
         return
