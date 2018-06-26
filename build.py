@@ -15,8 +15,9 @@ def download_extract(url, dl_path):
             # Already downloaded
             wget.download(url, out=dl_path)
         except urllib.error.URLError:
+            warnings.warn('wget download is not working properly, sleep for 5 seconds and try again...')
             time.sleep(5)
-            
+
     if dl_path.endswith(".tar.gz") and os.path.isdir(dl_path[:-len(".tar.gz")]):
         # Already extracted
         return
