@@ -150,20 +150,8 @@ void Scorer::set_char_map(const std::vector<std::string>& char_list) {
   char_map_.clear();
 
   for (size_t i = 0; i < char_list_.size(); i++) {
-    if (char_list_[i] == " ") {
-      if (SPACE_ID == -1) {
+    if (char_list_[i] == " " || char_list_[i] == "<space>") {
         SPACE_ID_ = i;
-      } else {
-        throw "SPACE_ID is already allocated, but found ' '";
-      }
-    }
-
-    if (char_list_[i] == "<space>") {
-      if (SPACE_ID == -1) {
-        SPACE_ID_ = i;
-      } else {
-        throw "SPACE_ID is already allocated, but found <space>";
-      }
     }
     // The initial state of FST is state 0, hence the index of chars in
     // the FST should start from 1 to avoid the conflict with the initial
