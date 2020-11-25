@@ -153,7 +153,6 @@ void Scorer::set_char_map(const std::vector<std::string>& char_list) {
     if (char_list_[i] == " ") {
       if (SPACE_ID == -1) {
         SPACE_ID_ = i;
-      }
       } else {
         throw "SPACE_ID is already allocated, but found ' '";
       }
